@@ -1,5 +1,6 @@
 package com.example.grb.todolist.entity;
 
+import com.example.grb.todolist.dto.ToDoListDTO;
 import jakarta.persistence.*;
 import org.springframework.beans.BeanUtils;
 
@@ -20,7 +21,7 @@ public class ToDoListEntity {
     @Column(nullable = false)
     private boolean feito;
 
-    public ToDoListEntity(ToDoListEntity toDoList){
+    public ToDoListEntity(ToDoListDTO toDoList){
         BeanUtils.copyProperties(toDoList, this);
     }
 
