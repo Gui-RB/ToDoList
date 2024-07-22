@@ -15,14 +15,15 @@ public class ToDoListService {
     @Autowired
     public ToDoRepositoy toDoRepositoy;
 
-    public List<ToDoListDTO> listarTodos(ToDoListDTO toDoListDTO){
+    public List<ToDoListDTO> listarTodos(){
         Sort sort = Sort.by("prioridades").descending().and(
             Sort.by("titulo").ascending());
         List<ToDoListEntity> listEntities = toDoRepositoy.findAll(sort);
         return listEntities.stream().map(ToDoListDTO :: new).toList();
     }
 
-    public void inserir(ToDoListEntity toDoListEntity){
+    public void inserir(ToDoListDTO toDoList){
+        ToDoListEntity toDoListEntity = new ToDoListEntity(toDoList);
         toDoRepositoy.save(toDoListEntity);
     }
 
